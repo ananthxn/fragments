@@ -12,6 +12,8 @@
     "url": "git+https://github.com/ananthxn/fragments.git"
   },
   "author": "Ananthakrishnan Arunkumar",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "prettier": "3.2.2"
+  }
 }
-  
