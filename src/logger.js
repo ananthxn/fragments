@@ -16,4 +16,4 @@ if (options.level === 'debug') {
 
 // Create and export a Pino Logger instance:
 // https://getpino.io/#/docs/api?id=logger
-module.exports = require('pino')(options);it add .eslintrc.js package-lock.json package.json src/
+module.exports = require('pino')(options);
