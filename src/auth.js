@@ -13,7 +13,6 @@ const logger = require('./logger');
 // Create a Cognito JWT Verifier, which will confirm that any JWT we
 // get from a user is valid and something we can trust. See:
 // https://github.com/awslabs/aws-jwt-verify#cognitojwtverifier-verify-parameters
-console.log('AWS_COGNITO_POOL_ID:', process.env.AWS_COGNITO_POOL_ID);
 const jwtVerifier = CognitoJwtVerifier.create({
   // These variables must be set in the .env
   userPoolId: process.env.AWS_COGNITO_POOL_ID,
