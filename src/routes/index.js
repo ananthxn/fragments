@@ -1,6 +1,8 @@
 // src/routes/index.js
 
 const express = require('express');
+const { createSuccessResponse } = require('../response');
+
 
 // Our authentication middleware
 const { authenticate } = require('../auth');
@@ -29,13 +31,12 @@ router.get('/', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache');
 
   // Send a 200 'OK' response with info about our repo
-  res.status(200).json({
-    status: 'ok',
+  res.status(200).json(createSuccessResponse({
     author,
     // TODO: change this to use your GitHub username!
     githubUrl: 'https://github.com/ananthxn/fragments',
     version,
-  });
+  }));
 });
 
 
