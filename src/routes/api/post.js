@@ -10,7 +10,6 @@ router.post('/fragments',  async (req, res, next) => {
     if (!Buffer.isBuffer(req.body)) {
       return res.status(415).json(createErrorResponse(new Error('Unsupported content type'), 415));
     }
-
     const { type } = contentType.parse(req.get('Content-Type'));
     const fragment = new Fragment({
       ownerId: req.user,
@@ -20,19 +19,12 @@ router.post('/fragments',  async (req, res, next) => {
     await fragment.save();
     await fragment.setData(req.body);
   
-    const apiUrl = process.env.API_URL || `http://${req.headers.host}`;
-    //res.set('Content-Type', fragment.type);
-    res.setHeader('Location', apiUrl + '/v1/fragments/' + fragment.id);
-
+    res.set('Content-Type', fragment.type);
+    res.setHeader('Location', `http://${req.headers.host}/v1/fragments/${fragment.id}`);
     res.status(201).json(createSuccessResponse({
-      id: fragment.id,
-      ownerId: fragment.ownerId,
-      type: fragment.type,
-      size: fragment.size,
-      created: fragment.created,
-      updated: fragment.updated
-    }));
 
+      fragment: fragment
+    }));
   } catch (error) {
     next(createErrorResponse(error, 500));
   }
