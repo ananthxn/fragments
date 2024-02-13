@@ -21,7 +21,7 @@ class Fragment {
       throw new Error('ownerId is required');
     }
     if (!type) {
-      throw new Error('type isrequired');
+      throw new Error('type is required');
     }
     if (typeof size !== 'number' || size < 0) {
       throw new Error('size must be a non-negative number');
