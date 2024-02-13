@@ -79,14 +79,8 @@ class Fragment {
   * @returns Promise<void>
   */
   save() {
-    return writeFragment({
-      id: this.id,
-      ownerId: this.ownerId,
-      created: this.created,
-      updated: new Date().toISOString(),
-      type: this.type,
-      size: this.size,
-    });
+    this.updated = new Date().toISOString();
+    return writeFragment(this);
   }
 
   /**
