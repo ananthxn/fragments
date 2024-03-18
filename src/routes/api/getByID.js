@@ -1,14 +1,21 @@
 const express = require('express');
 const { Fragment } = require('../../model/fragment');
 const { createErrorResponse } = require('../../response');
+const markdownIt = require('markdown-it')();
+
 
 const router = express.Router();
 
 // GET /v1/fragments/:id 
 router.get('/fragments/:id', async (req, res) => {
   try {
-    const { id } = req.params;
+    let { id } = req.params;
     const ownerId = req.user;
+    let format = null;
+
+    if (id.includes('.')) {
+      [id, format] = id.split('.');
+    }
 
     // Retrieve the fragment by ID
     const fragment = await Fragment.byId(ownerId, id);
@@ -17,10 +24,17 @@ router.get('/fragments/:id', async (req, res) => {
       console.warn('Fragment not found with getById ', { ownerId, fragmentId: id });
       return res.status(404).json(createErrorResponse('Fragment not found', 404));
     }
-    const data = await fragment.getData();
+
+    let data = await fragment.getData();
+    let contentType = fragment.type;
     console.info('Fragment data retrieved using with getById ', { ownerId, fragmentId: id });
 
-    res.set('Content-Type', fragment.type);
+    if (format === 'html' && contentType === 'text/markdown') {
+      data = markdownIt.render(data.toString());
+      contentType = 'text/html';
+    }
+
+    res.set('Content-Type', contentType);
     res.status(200).send(data);
   } catch (error) {
     res.status(404).json(createErrorResponse(404, error));

@@ -103,7 +103,7 @@ class Fragment {
     }
     await writeFragmentData(this.ownerId, this.id, data);
     this.size = data.length;
-    await this.save(); 
+    await this.save();
   }
 
   /**
@@ -140,7 +140,9 @@ class Fragment {
     let validType = [
       'text/plain',
       'text/plain; charset=utf-8',
-     
+      'text/markdown',
+      'text/html',
+      'application/json'
     ];
 
     return validType.includes(value);
