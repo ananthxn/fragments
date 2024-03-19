@@ -16,8 +16,7 @@ router.get('/fragments/:id', async (req, res) => {
     if (id.includes('.')) {
       [id, format] = id.split('.');
     }
-
-    // Retrieve the fragment by ID
+    
     const fragment = await Fragment.byId(ownerId, id);
 
     if (!fragment) {
