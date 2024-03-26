@@ -33,7 +33,8 @@ router.get('/fragments/:id', async (req, res) => {
       contentType = 'text/html';
     }
 
-    res.set('Content-Type', contentType);
+   // res.set('Content-Type', contentType);
+    res.setHeader('Content-Type', contentType);
     res.status(200).send(data);
   } catch (error) {
     res.status(404).json(createErrorResponse(404, error));
