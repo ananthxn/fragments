@@ -1,0 +1,108 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:020592628509:task-definition/fragments-task-01:2",
+    "containerDefinitions": [
+        {
+            "name": "fragments-container-01",
+            "image": "ananthxn/fragments:latest",
+            "cpu": 256,
+            "memoryReservation": 512,
+            "portMappings": [
+                {
+                    "name": "fragments-container-01-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "AWS_COGNITO_POOL_ID",
+                    "value": "us-east-1_8ldYDRhSm"
+                },
+                {
+                    "name": "API_URL",
+                    "value": "http://localhost:8080"
+                },
+                {
+                    "name": "PORT",
+                    "value": "8080"
+                },
+                {
+                    "name": "AWS_COGNITO_CLIENT_ID",
+                    "value": "7g6lb5b2kjrdobi9h9drecpl5v"
+                },
+                {
+                    "name": "LOG_LEVEL",
+                    "value": "debug"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/fragments-task-01",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "fragments-task-01",
+    "taskRoleArn": "arn:aws:iam::020592628509:role/LabRole",
+    "executionRoleArn": "arn:aws:iam::020592628509:role/LabRole",
+    "networkMode": "awsvpc",
+    "revision": 2,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-04-01T19:05:42.218Z",
+    "registeredBy": "arn:aws:sts::020592628509:assumed-role/voclabs/user3012896=aarunkumar@myseneca.ca",
+    "tags": []
+}
