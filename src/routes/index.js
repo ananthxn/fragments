@@ -2,6 +2,7 @@
 
 const express = require('express');
 const { createSuccessResponse } = require('../response');
+const { hostname } = require('os');
 
 
 // Our authentication middleware
@@ -36,6 +37,7 @@ router.get('/', (req, res) => {
     // TODO: change this to use your GitHub username!
     githubUrl: 'https://github.com/ananthxn/fragments',
     version,
+    hostname: hostname(),
   }));
 });
 
