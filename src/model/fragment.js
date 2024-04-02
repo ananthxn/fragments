@@ -12,7 +12,7 @@ const {
   writeFragmentData,
   listFragments,
   deleteFragment,
-} = require('./data/memory');
+} = require('./data');
 
 
 class Fragment {
@@ -70,8 +70,11 @@ class Fragment {
    * @param {string} id fragment's id
    * @returns Promise<void>
    */
-  static delete(ownerId, id) {
-    return deleteFragment(ownerId, id);
+  // static delete(ownerId, id) {
+  //   return deleteFragment(ownerId, id);
+  // }
+  static async delete(ownerId, id) {
+    return await deleteFragment(ownerId, id);
   }
 
   /**
