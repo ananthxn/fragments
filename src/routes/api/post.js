@@ -5,7 +5,7 @@ const { createSuccessResponse, createErrorResponse } = require('../../response')
 const router = express.Router();
 const logger = require('../../logger');
 
-router.post('/fragments', async (req, res, next) => {
+router.post('/fragments', async (req, res) => {
   try {
     logger.debug('POST request', { body: req.body });
     if (!Buffer.isBuffer(req.body)) {
@@ -14,7 +14,9 @@ router.post('/fragments', async (req, res, next) => {
 
     const fragment = new Fragment({
       ownerId: req.user,
-      type: req.get('Content-Type')
+      type: req.get('Content-Type'),
+      size: req.body.length,
+
     });
 
     await fragment.save();
@@ -31,7 +33,7 @@ router.post('/fragments', async (req, res, next) => {
     }));
   } catch (error) {
     logger.error('error during POST fragment');
-    next(createErrorResponse(error, 500));
+
   }
 });
 

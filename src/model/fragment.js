@@ -81,9 +81,9 @@ class Fragment {
   * Saves the current fragment to the database
   * @returns Promise<void>
   */
-  save() {
+  async save() {
     this.updated = new Date().toISOString();
-    return writeFragment(this);
+    await writeFragment(this);
   }
 
   /**
@@ -104,9 +104,10 @@ class Fragment {
     if (!Buffer.isBuffer(data)) {
       throw new Error('Data must be a Buffer');
     }
-    await writeFragmentData(this.ownerId, this.id, data);
     this.size = data.length;
-    await this.save();
+    await writeFragmentData(this.ownerId, this.id, data);
+
+    // await this.save();
   }
 
   /**
