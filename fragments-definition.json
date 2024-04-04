@@ -40,7 +40,12 @@
         {
           "name": "AWS_S3_BUCKET_NAME",
           "value": "aarunkumar-fragments"
+        },
+        {
+          "name": "AWS_DYNAMODB_TABLE_NAME",
+          "value": "fragments"
         }
+
       ],
       "environmentFiles": [],
       "mountPoints": [],
