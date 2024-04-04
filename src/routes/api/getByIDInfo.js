@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     res.status(200).json(
       createSuccessResponse({
         status: 'ok',
-        fragments: fragment
+        fragment: fragment
       })
     );
 
