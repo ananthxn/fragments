@@ -141,16 +141,23 @@ class Fragment {
    * @returns {boolean} true if we support this Content-Type (i.e., type/subtype)
    */
   static isSupportedType(value) {
-    let validType = [
-      'text/plain',
-      'text/plain; charset=utf-8',
-      'text/markdown',
-      'text/html',
-      'application/json'
-    ];
+      let validType = [
+        'text/plain',
+        'text/plain; charset=utf-8',
+        'text/markdown',
+        'text/html',
+        'application/json',
+        'image/png',
+        'image/jpeg',
+        'image/webp',
+        'image/avif',
+        'image/gif'
+      ];
 
     return validType.includes(value);
   }
+
+  
 }
 
 module.exports = { Fragment };
