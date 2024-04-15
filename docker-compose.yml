@@ -14,6 +14,9 @@ services:
       - API_URL=http://localhost:8080
       # Use Basic Auth (for running tests, CI)
       - HTPASSWD_FILE=tests/.htpasswd
+      #- AWS_COGNITO_POOL_ID=us-east-1_8ldYDRhSm
+      #- AWS_COGNITO_CLIENT_ID=7g6lb5b2kjrdobi9h9drecpl5v
+
       # Use the LOG_LEVEL set in the host environment, or default to info
       - LOG_LEVEL=${LOG_LEVEL:-info}
       - AWS_REGION=us-east-1
@@ -42,7 +45,7 @@ services:
     # Run the database in memory, see:
     # https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html
     command: ['-jar', 'DynamoDBLocal.jar', '-inMemory']
-    
+
   localstack:
     # https://hub.docker.com/r/localstack/localstack
     image: localstack/localstack

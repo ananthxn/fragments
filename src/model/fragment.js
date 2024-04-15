@@ -131,8 +131,30 @@ class Fragment {
    * Returns the formats into which this fragment type can be converted
    * @returns {Array<string>} list of supported mime types
    */
+  // get formats() {
+  //   return [this.mimeType];
+  // }
+
   get formats() {
-    return [this.mimeType];
+    const extensions = Fragment.validConversions[this.mimeType] || [];
+    const mimeTypes = extensions.map(ext => {
+      switch (ext) {
+        case '.txt': return 'text/plain';
+        case '.md': return 'text/markdown';
+        case '.html': return 'text/html';
+        case '.csv': return 'text/csv';
+        case '.json': return 'application/json';
+        case '.png': return 'image/png';
+        case '.jpg':
+        case '.jpeg': return 'image/jpeg';
+        case '.webp': return 'image/webp';
+        case '.gif': return 'image/gif';
+        case '.avif': return 'image/avif';
+        default: return null;
+      }
+    }).filter(mimeType => mimeType != null); 
+
+    return mimeTypes.length > 0 ? mimeTypes : [this.mimeType];
   }
 
   /**
@@ -156,8 +178,19 @@ class Fragment {
 
     return validType.includes(value);
   }
-
   
+  static validConversions = {
+    'text/plain': ['.txt'],
+    'text/markdown': ['.md', '.html', '.txt'],
+    'text/html': ['.html', '.txt'],
+    'text/csv': ['.csv', '.txt', '.json'],
+    'application/json': ['.json', '.txt'],
+    'image/png': ['.png', '.jpg', '.webp', '.gif', '.avif'],
+    'image/jpeg': ['.jpg', '.png', '.webp', '.gif', '.avif'],
+    'image/webp': ['.webp', '.png', '.jpg', '.gif', '.avif'],
+    'image/avif': ['.avif', '.png', '.jpg', '.webp', '.gif'],
+    'image/gif': ['.gif', '.png', '.jpg', '.webp', '.avif'],
+  };
 }
 
 module.exports = { Fragment };

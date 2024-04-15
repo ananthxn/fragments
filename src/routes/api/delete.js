@@ -1,9 +1,10 @@
+// src/routes/api/delete.js
 const { createSuccessResponse, createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
 
 module.exports = async (req, res) => {
 
-  const id = req.params.id.split('.')[0];
+  let { id } = req.params;
   try {
 
     const fragment = await Fragment.byId(req.user, id);

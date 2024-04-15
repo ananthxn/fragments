@@ -6,8 +6,8 @@ const wait = async (ms = 10) => new Promise((resolve) => setTimeout(resolve, ms)
 
 const validTypes = [
   `text/plain`,
-  /*
-   Currently, only text/plain is supported. Others will be added later.
+  
+  //  Currently, only text/plain is supported. Others will be added later.
 
   `text/markdown`,
   `text/html`,
@@ -16,7 +16,7 @@ const validTypes = [
   `image/jpeg`,
   `image/webp`,
   `image/gif`,
-  */
+  
 ];
 
 describe('Fragment class', () => {

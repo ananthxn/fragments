@@ -1,4 +1,4 @@
-// src/routes/api/get.js
+// src/routes/api/getByIdInfo.js
 
 const { createSuccessResponse, createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
